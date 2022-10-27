@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         //If a user types an incomplete URL (eg: temple.edu),
          //complete the URL (https://temple.edu) before loading it
         if (urlEditText.text.contains("https://")){
+            webView.loadUrl(urlEditText.toString())
             }else{
                val newString = "https://www.$urlEditText"
             webView.loadUrl(newString)
