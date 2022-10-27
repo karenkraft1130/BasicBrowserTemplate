@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
 
         // Allow your browser to intercept hyperlink clicks
-        webView.webViewClient = object : WebViewClient()
+        //webView.webViewClient = object : WebViewClient()
 
         //Enable JavaScript
         webView.settings.javaScriptEnabled = true
@@ -35,14 +35,19 @@ class MainActivity : AppCompatActivity() {
         //If a user types an incomplete URL (eg: temple.edu),
          //complete the URL (https://temple.edu) before loading it
         if (urlEditText.text.contains("https://")){
-
             }else{
-               val newString = "https://$urlEditText.com"
-                 webView.loadUrl(newString)
+               val newString = "https://www.$urlEditText"
+            webView.loadUrl(newString)
         }
 
         //When a page has loaded, update the Activity's title to show the web page's title
+        webView.webViewClient = object : WebViewClient(){
+            override fun onPageCommitVisible(view: WebView?, url: String?) {
+                super.onPageCommitVisible(view, url)
 
+                this@MainActivity.title = view.toString()
+            }
+        }
 
 
     }
